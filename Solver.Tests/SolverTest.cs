@@ -29,5 +29,22 @@ namespace Solver.Tests
         {
             TestEquation(1, 2, 1, -1);
         }
+
+        [TestMethod]
+        public void FunctionalTest()
+        {
+            for (int i = 0; i < 100; i++)
+            {
+                var rnd = new Random();
+                var a = rnd.NextDouble() * 10;
+                var b = rnd.NextDouble() * 10;
+                var c = rnd.NextDouble() * 10;
+                var result = QuadraticEquationsSolver.Solve(a, b, c);
+                foreach (var x in result)
+                {
+                    Assert.AreEqual(0, a * x * x + b * x + c, 1e-10);
+                }
+            }
+        }
     }
 }
